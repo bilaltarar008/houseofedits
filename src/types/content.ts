@@ -114,11 +114,22 @@ export interface Post {
   plainText?: string;
 }
 
+/** A still frame in the home-page gallery, with an optional caption. */
+export interface GalleryFrame {
+  image: ImageAsset;
+  /** e.g. "Ayesha & Hamza — Hunza" */
+  caption?: string;
+  /** CSS aspect-ratio string; defaults per grid slot when omitted */
+  aspect?: string;
+}
+
 export interface SiteSettings {
   headline: string;
   intro: string;
   /** Full showreel shown on the home page (client provides the src later) */
   showreel?: VideoAsset;
+  /** Stills + motion gallery on the home page */
+  gallery: GalleryFrame[];
   /** Client / studio logos for the marquee */
   clients: { name: string; logo?: ImageAsset }[];
   stats: { label: string; value: string }[];

@@ -17,6 +17,8 @@ interface VideoPlayerProps {
   controls?: boolean;
   priority?: boolean;
   sizes?: string;
+  /** Fill the parent's height instead of imposing the video aspect ratio */
+  fill?: boolean;
 }
 
 type Status = "idle" | "loading" | "ready" | "playing" | "paused";
@@ -37,6 +39,7 @@ export function VideoPlayer({
   controls = true,
   priority = false,
   sizes = "100vw",
+  fill = false,
 }: VideoPlayerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -153,9 +156,10 @@ export function VideoPlayer({
       ref={containerRef}
       className={cn(
         "grain group relative overflow-hidden rounded-sm bg-black",
+        fill && "h-full w-full",
         className,
       )}
-      style={{ aspectRatio: video.aspect ?? "16 / 9" }}
+      style={fill ? undefined : { aspectRatio: video.aspect ?? "16 / 9" }}
     >
       {hasSource && (
         <video

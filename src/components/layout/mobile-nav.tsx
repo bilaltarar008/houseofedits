@@ -7,7 +7,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site-config";
+import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
+import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 export function MobileNav() {
@@ -81,10 +82,22 @@ export function MobileNav() {
               })}
             </nav>
 
-            <div className="container-page mt-10">
+            <div className="container-page mt-10 flex flex-col gap-3">
               <Button href="/contact" size="lg" className="w-full" onClick={close}>
                 Start a project
               </Button>
+              {whatsappLink() && (
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  className="flex h-13 w-full items-center justify-center gap-2.5 rounded-sm bg-[#25D366] text-sm font-medium text-white transition-colors hover:bg-[#20bd5a]"
+                >
+                  <WhatsAppIcon className="size-5" />
+                  Chat on WhatsApp
+                </a>
+              )}
             </div>
           </motion.div>
         )}

@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ClientMarquee } from "@/components/sections/client-marquee";
 import { CtaSection } from "@/components/sections/cta";
 import { FeaturedWork } from "@/components/sections/featured-work";
+import { Frames } from "@/components/sections/frames";
 import { Hero } from "@/components/sections/hero";
 import { Process } from "@/components/sections/process";
 import { ServicesPreview } from "@/components/sections/services-preview";
@@ -53,6 +54,7 @@ export default async function HomePage() {
       <Hero settings={settings} />
       <ClientMarquee clients={settings.clients} />
       <FeaturedWork projects={projects} />
+      <Frames frames={settings.gallery} video={settings.showreel} />
       <ServicesPreview services={services} />
       <Process />
       <Stats stats={settings.stats} />

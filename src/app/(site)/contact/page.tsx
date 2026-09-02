@@ -4,7 +4,13 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/primitives/container";
 import { PageHeader } from "@/components/primitives/page-header";
 import { JsonLd } from "@/components/seo/json-ld";
-import { activeSocialLinks, siteConfig } from "@/lib/site-config";
+import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
+import {
+  activeSocialLinks,
+  siteConfig,
+  whatsappDisplay,
+  whatsappLink,
+} from "@/lib/site-config";
 import { breadcrumbSchema, graph, organizationSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
@@ -18,6 +24,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   const socials = activeSocialLinks();
+  const waHref = whatsappLink();
 
   const details = [
     siteConfig.contact.email && {
@@ -76,6 +83,33 @@ export default function ContactPage() {
           <ContactForm />
 
           <aside className="flex flex-col gap-8">
+            {waHref && (
+              <div className="flex flex-col gap-4 rounded-sm border border-[#25D366]/25 bg-[#25D366]/[0.06] p-6">
+                <div className="flex items-center gap-2.5">
+                  <WhatsAppIcon className="size-5 text-[#25D366]" />
+                  <span className="text-sm font-medium text-foreground">
+                    Prefer to chat?
+                  </span>
+                </div>
+                <p className="text-sm leading-relaxed text-muted">
+                  Message me on WhatsApp for a quick reply — share your date and
+                  a couple of reference films.
+                </p>
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-[#25D366] px-5 text-sm font-medium text-white transition-colors hover:bg-[#20bd5a]"
+                >
+                  <WhatsAppIcon className="size-4" />
+                  Chat on WhatsApp
+                </a>
+                <span className="text-xs text-muted-foreground">
+                  {whatsappDisplay()}
+                </span>
+              </div>
+            )}
+
             {details.length > 0 ? (
               <ul className="flex flex-col gap-6">
                 {details.map((d) => (

@@ -3,7 +3,13 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/primitives/container";
 import { Logo } from "@/components/layout/logo";
-import { activeSocialLinks, siteConfig } from "@/lib/site-config";
+import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
+import {
+  activeSocialLinks,
+  siteConfig,
+  whatsappDisplay,
+  whatsappLink,
+} from "@/lib/site-config";
 
 export function Footer() {
   const socials = activeSocialLinks();
@@ -26,6 +32,17 @@ export function Footer() {
                 className="text-sm text-accent hover:text-accent-strong"
               >
                 {siteConfig.contact.email}
+              </a>
+            )}
+            {whatsappLink() && (
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-[#25D366]"
+              >
+                <WhatsAppIcon className="size-4 text-[#25D366]" />
+                {whatsappDisplay()}
               </a>
             )}
           </div>

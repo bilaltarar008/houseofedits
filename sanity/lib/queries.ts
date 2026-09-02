@@ -26,6 +26,7 @@ export const siteSettingsQuery = groq`
     headline,
     intro,
     showreel{ ${videoFields} },
+    "gallery": gallery[]{ caption, image{ ${imageFields} } },
     "clients": clients[]{ name, logo{ ${imageFields} } },
     "stats": stats[]{ label, value },
     about,

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
@@ -97,19 +98,27 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           </div>
         </div>
 
-        <div className="flex gap-1.5">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Go to testimonial ${i + 1}`}
-              onClick={() => emblaApi?.scrollTo(i)}
-              className={cn(
-                "h-1 rounded-full transition-all",
-                i === selected ? "w-8 bg-accent" : "w-4 bg-border-strong",
-              )}
-            />
-          ))}
+        <div className="flex items-center justify-between gap-6">
+          <div className="flex gap-1.5">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to testimonial ${i + 1}`}
+                onClick={() => emblaApi?.scrollTo(i)}
+                className={cn(
+                  "h-1 rounded-full transition-all",
+                  i === selected ? "w-8 bg-accent" : "w-4 bg-border-strong",
+                )}
+              />
+            ))}
+          </div>
+          <Link
+            href="/reviews"
+            className="shrink-0 text-sm text-accent underline-offset-4 hover:underline"
+          >
+            All reviews →
+          </Link>
         </div>
       </Container>
     </section>

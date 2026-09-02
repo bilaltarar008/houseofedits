@@ -28,6 +28,16 @@ export const fallbackSiteSettings: SiteSettings = {
     title: "House of Edits — 2026 Showreel",
     poster: img("House of Edits showreel poster"),
   },
+  gallery: [
+    { image: img("Bride and groom portrait at golden hour"), caption: "Ayesha & Hamza — Hunza" },
+    { image: img("First dance under warm string lights"), caption: "Sana & Ali — Islamabad" },
+    { image: img("Detail shot of rings on floral arrangement"), caption: "Ring detail — Studio Nine" },
+    { image: img("Guests dancing at the walima reception"), caption: "Zara & Bilal — Lahore" },
+    { image: img("Couple walking the Karachi coastline at dusk"), caption: "Mahnoor & Danial — Karachi" },
+    { image: img("Bridal entry through a corridor of light"), caption: "Iqra & Usman — Shinkiari" },
+    { image: img("Wide desert ceremony at blue hour"), caption: "Hira & Faizan — Cholistan" },
+    { image: img("Emotional embrace during the vows"), caption: "The vows — Frame Forty" },
+  ],
   clients: [
     { name: "Studio Nine" },
     { name: "Amber & Co." },

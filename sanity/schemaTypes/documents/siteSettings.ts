@@ -34,6 +34,38 @@ export const siteSettings = defineType({
       group: "home",
     }),
     defineField({
+      name: "gallery",
+      title: "Stills & motion gallery",
+      description:
+        "Photo stills shown alongside the showreel on the home page. 5–8 works best.",
+      type: "array",
+      group: "home",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              type: "image",
+              title: "Image",
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: "alt",
+                  type: "string",
+                  title: "Alt text",
+                  validation: (rule) => rule.required(),
+                }),
+              ],
+              validation: (rule) => rule.required(),
+            }),
+            defineField({ name: "caption", type: "string", title: "Caption" }),
+          ],
+          preview: { select: { title: "caption", media: "image" } },
+        }),
+      ],
+    }),
+    defineField({
       name: "clients",
       title: "Clients / studios",
       type: "array",

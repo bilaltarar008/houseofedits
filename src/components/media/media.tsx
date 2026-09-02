@@ -13,6 +13,8 @@ interface MediaProps {
   priority?: boolean;
   /** Label shown on the placeholder when no image is set */
   placeholderLabel?: string;
+  /** Fill the parent's height instead of imposing an aspect ratio */
+  fill?: boolean;
 }
 
 function hasRealSrc(url?: string) {
@@ -32,6 +34,7 @@ export function Media({
   sizes = "100vw",
   priority = false,
   placeholderLabel,
+  fill = false,
 }: MediaProps) {
   const real = hasRealSrc(image?.url);
 
@@ -39,9 +42,10 @@ export function Media({
     <div
       className={cn(
         "grain @container relative overflow-hidden rounded-sm bg-surface-2",
+        fill && "h-full w-full",
         className,
       )}
-      style={{ aspectRatio: aspect }}
+      style={fill ? undefined : { aspectRatio: aspect }}
     >
       {real ? (
         <Image

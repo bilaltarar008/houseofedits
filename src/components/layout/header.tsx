@@ -7,12 +7,14 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site-config";
+import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
+import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
+  const waHref = whatsappLink();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -57,7 +59,18 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          {waHref && (
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="flex size-9 items-center justify-center rounded-full border border-border text-[#25D366] transition-colors hover:border-[#25D366]/60 hover:bg-[#25D366]/10"
+            >
+              <WhatsAppIcon className="size-4" />
+            </a>
+          )}
           <Button href="/contact" size="sm" variant="outline">
             Start a project
           </Button>

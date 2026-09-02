@@ -169,6 +169,16 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       headline: String(raw.headline ?? fallbackSiteSettings.headline),
       intro: String(raw.intro ?? fallbackSiteSettings.intro),
       showreel: mapVideo(raw.showreel as Raw),
+      gallery: Array.isArray(raw.gallery)
+        ? ((raw.gallery as Raw[])
+            .map((g) => {
+              const image = toImageAsset(g.image as never, String(g.caption ?? ""));
+              return image
+                ? { image, caption: (g.caption as string) || undefined }
+                : null;
+            })
+            .filter(Boolean) as SiteSettings["gallery"])
+        : fallbackSiteSettings.gallery,
       clients: Array.isArray(raw.clients)
         ? (raw.clients as Raw[]).map((c) => ({
             name: String(c.name ?? ""),
@@ -216,6 +226,24 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     const raw = await client.fetch<Raw[]>(testimonialsQuery, {}, NEXT_TAGS);
     return raw?.map(mapTestimonial) ?? null;
   }, fallbackTestimonials);
+}
+
+/**
+ * Reviews page data. Unlike `getTestimonials`, this returns an EMPTY array
+ * until a Sanity project is connected with real published testimonials — so
+ * the page shows its "Reviews coming soon" state now, and real cards later.
+ */
+export async function getPublishedTestimonials(): Promise<Testimonial[]> {
+  if (!sanityConfigured) return [];
+  try {
+    const raw = await client.fetch<Raw[]>(testimonialsQuery, {}, NEXT_TAGS);
+    return raw?.map(mapTestimonial) ?? [];
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[content] published testimonials fetch failed:", error);
+    }
+    return [];
+  }
 }
 
 export async function getServices(): Promise<ServicePackage[]> {

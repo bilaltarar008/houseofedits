@@ -3,7 +3,7 @@
  * @see https://schema.org
  */
 
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/utils";
 import type { FaqItem, Post, Project, VideoAsset } from "@/types/content";
 
@@ -30,6 +30,15 @@ export function organizationSchema() {
     ],
     ...(siteConfig.contact.email && { email: siteConfig.contact.email }),
     ...(siteConfig.contact.phone && { telephone: siteConfig.contact.phone }),
+    ...(siteConfig.contact.whatsapp && {
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: `+${siteConfig.contact.whatsapp.replace(/\D/g, "")}`,
+        url: whatsappLink(),
+        availableLanguage: ["en", "ur"],
+      },
+    }),
     sameAs: Object.values(siteConfig.social).filter(Boolean),
   };
 }
@@ -122,6 +131,57 @@ export function articleSchema(post: Post) {
     wordCount: post.plainText
       ? post.plainText.trim().split(/\s+/).length
       : undefined,
+  };
+}
+
+export function reviewsSchema(
+  testimonials: {
+    quote: string;
+    author: string;
+    role?: string;
+    company?: string;
+    rating?: number;
+  }[],
+) {
+  if (!testimonials.length) return null;
+
+  const rated = testimonials.filter((t) => typeof t.rating === "number");
+  const aggregate = rated.length
+    ? {
+        "@type": "AggregateRating" as const,
+        ratingValue: (
+          rated.reduce((sum, t) => sum + (t.rating ?? 0), 0) / rated.length
+        ).toFixed(1),
+        reviewCount: rated.length,
+        bestRating: 5,
+        worstRating: 1,
+      }
+    : undefined;
+
+  return {
+    "@type": ["Organization", "ProfessionalService"],
+    "@id": ORG_ID,
+    name: siteConfig.name,
+    url: absoluteUrl("/reviews"),
+    ...(aggregate && { aggregateRating: aggregate }),
+    review: testimonials.map((t) => ({
+      "@type": "Review",
+      reviewBody: t.quote,
+      author: {
+        "@type": "Person",
+        name: t.author,
+        ...(t.company && { worksFor: { "@type": "Organization", name: t.company } }),
+      },
+      ...(typeof t.rating === "number" && {
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: t.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+      }),
+      itemReviewed: { "@id": PERSON_ID },
+    })),
   };
 }
 
