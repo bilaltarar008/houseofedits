@@ -27,12 +27,6 @@ export const service = defineType({
       rows: 3,
       validation: (rule) => rule.required().max(240),
     }),
-    defineField({
-      name: "price",
-      title: "Price (display text)",
-      type: "string",
-      description: 'Free text, e.g. "From $350 / film"',
-    }),
     defineField({ name: "turnaround", title: "Turnaround", type: "string" }),
     defineField({
       name: "deliverables",
@@ -53,5 +47,5 @@ export const service = defineType({
     defineField({ name: "featured", title: "Featured", type: "boolean", initialValue: false }),
     defineField({ name: "order", title: "Sort order", type: "number" }),
   ],
-  preview: { select: { title: "title", subtitle: "price" } },
+  preview: { select: { title: "title", subtitle: "turnaround" } },
 });

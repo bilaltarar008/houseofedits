@@ -75,8 +75,6 @@ export interface ServicePackage {
   title: string;
   slug: string;
   summary: string;
-  /** Display price, e.g. "From $350 / film" — free text */
-  price?: string;
   turnaround?: string;
   deliverables: string[];
   icon?: string;

@@ -215,7 +215,6 @@ export const fallbackServices: ServicePackage[] = [
     slug: "highlight-film",
     summary:
       "The film your couple shares first — a cinematic 3–6 minute cut with full color grade and sound design.",
-    price: "From $350 / film",
     turnaround: "10–14 days first cut",
     deliverables: [
       "3–6 minute highlight film",
@@ -234,7 +233,6 @@ export const fallbackServices: ServicePackage[] = [
     slug: "feature-documentary-edit",
     summary:
       "The long-form keepsake — full ceremony and speeches, structured so the whole family watches to the end.",
-    price: "From $600 / film",
     turnaround: "3–4 weeks first cut",
     deliverables: [
       "15–40 minute feature film",
@@ -252,7 +250,6 @@ export const fallbackServices: ServicePackage[] = [
     slug: "social-teaser",
     summary:
       "A 30–60 second vertical cut delivered within 48 hours, built to travel on Instagram and TikTok.",
-    price: "From $120 / teaser",
     turnaround: "48 hours",
     deliverables: [
       "30–60s vertical + square exports",
@@ -269,7 +266,6 @@ export const fallbackServices: ServicePackage[] = [
     slug: "color-grade",
     summary:
       "You cut it, I grade it — a filmic, consistent grade across your whole timeline in DaVinci Resolve.",
-    price: "From $180 / project",
     turnaround: "5–7 days",
     deliverables: [
       "Primary + secondary grade",

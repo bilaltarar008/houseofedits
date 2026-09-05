@@ -10,6 +10,7 @@ import { Process } from "@/components/sections/process";
 import { ServicesPreview } from "@/components/sections/services-preview";
 import { Stats } from "@/components/sections/stats";
 import { Testimonials } from "@/components/sections/testimonials";
+import { VideoHero } from "@/components/sections/video-hero";
 import {
   getFeaturedProjects,
   getServices,
@@ -53,6 +54,7 @@ export default async function HomePage() {
 
       <Hero settings={settings} />
       <ClientMarquee clients={settings.clients} />
+      <VideoHero />
       <FeaturedWork projects={projects} />
       <Frames frames={settings.gallery} video={settings.showreel} />
       <ServicesPreview services={services} />

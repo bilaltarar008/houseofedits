@@ -43,7 +43,8 @@ export function Hero({ settings }: { settings: SiteSettings }) {
               video={settings.showreel}
               priority
               sizes="(min-width: 1280px) 1200px, 100vw"
-              controls
+              autoPlayInView
+              loop
               className="w-full border border-border"
             />
           ) : null}

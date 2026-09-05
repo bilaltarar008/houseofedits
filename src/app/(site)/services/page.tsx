@@ -49,7 +49,6 @@ export default async function ServicesPage() {
               "@type": "Offer",
               name: s.title,
               description: s.summary,
-              ...(s.price && { priceSpecification: { "@type": "PriceSpecification", description: s.price } }),
             })),
           },
         )}

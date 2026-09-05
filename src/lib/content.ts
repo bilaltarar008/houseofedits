@@ -127,7 +127,6 @@ function mapService(raw: Raw): ServicePackage {
     title: String(raw.title ?? ""),
     slug: String(raw.slug ?? ""),
     summary: String(raw.summary ?? ""),
-    price: (raw.price as string) || undefined,
     turnaround: (raw.turnaround as string) || undefined,
     deliverables: (raw.deliverables as string[]) ?? [],
     icon: (raw.icon as string) || undefined,

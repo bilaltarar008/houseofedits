@@ -25,6 +25,9 @@
   --accent-strong: #d9bd8c;
   --accent-contrast: #0a0a0a;
 
+  /* Editorial cream — deliberate light break from the dark theme, e.g. VideoHero */
+  --cream: #f5f3ef;
+
   /* Fonts (wired to next/font in layout.tsx) */
   --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -47,6 +50,7 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-contrast: var(--accent-contrast);
+  --color-cream: var(--cream);
 
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
@@ -181,6 +185,39 @@
     opacity: 0.035;
     z-index: 1;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /*
+   * Angular video-hero clip — a faceted hexagon cut on all 4 sides.
+   *
+   * Unlike a single diagonal, both the top and bottom edges bow inward with
+   * their own sharp peak (top dips down at 74%, bottom pushes up at 22%),
+   * each vertex meeting at flush corners — giving the frame a cut-gem,
+   * film-slate silhouette:
+   *
+   *   (0%,0%) ──────────╲                    (100%,0%)
+   *      │                ╲___(74%,10%)_____/     │
+   *      │                                         │
+   *      │       ╲____(22%,85%)____╱               │
+   *   (0%,100%)─╱                       ╲────── (100%,100%)
+   *
+   * 6 points, walked clockwise:
+   *   1. (0%, 0%)      top-left corner
+   *   2. (74%, 10%)    top edge's inward peak
+   *   3. (100%, 0%)    top-right corner
+   *   4. (100%, 100%)  bottom-right corner
+   *   5. (22%, 85%)    bottom edge's inward peak
+   *   6. (0%, 100%)    bottom-left corner
+   */
+  .hero-video-clip {
+    clip-path: polygon(
+      0% 0%,
+      74% 10%,
+      100% 0%,
+      100% 100%,
+      22% 85%,
+      0% 100%
+    );
   }
 
   .mask-fade-x {

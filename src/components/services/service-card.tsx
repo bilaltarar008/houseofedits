@@ -52,14 +52,9 @@ export function ServiceCard({
         <p className="text-sm leading-relaxed text-muted">{service.summary}</p>
       </div>
 
-      {(service.price || service.turnaround) && (
+      {service.turnaround && (
         <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
-          {service.price && (
-            <span className="text-accent">{service.price}</span>
-          )}
-          {service.turnaround && (
-            <span className="text-muted-foreground">{service.turnaround}</span>
-          )}
+          <span className="text-muted-foreground">{service.turnaround}</span>
         </div>
       )}
 
