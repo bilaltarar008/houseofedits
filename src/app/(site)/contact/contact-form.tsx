@@ -110,7 +110,7 @@ export function ContactForm() {
         <textarea
           rows={6}
           className={cn(fieldBase, "resize-y")}
-          placeholder="Footage volume, style references, deadline, anything else I should know."
+          placeholder="Footage volume, style references, deadline, anything else we should know."
           {...register("message")}
         />
       </Field>

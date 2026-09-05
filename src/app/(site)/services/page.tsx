@@ -57,7 +57,7 @@ export default async function ServicesPage() {
       <PageHeader
         eyebrow="Services"
         title="Packages built around your studio"
-        lede="Fixed-scope packages for predictable budgets — or an hourly retainer if you'd rather I embed in your workflow."
+        lede="Fixed-scope packages for predictable budgets — or an hourly retainer if you'd rather we embed in your workflow."
       />
 
       <section className="py-16 sm:py-24">
@@ -96,7 +96,7 @@ export default async function ServicesPage() {
 
       <CtaSection
         title="Not sure which package fits?"
-        body="Send me a couple of reference films and your deadline — I'll recommend the right scope and give you a quote."
+        body="Send us a couple of reference films and your deadline — we'll recommend the right scope and give you a quote."
       />
     </>
   );

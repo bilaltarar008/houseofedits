@@ -47,8 +47,8 @@ export function personSchema() {
   return {
     "@type": "Person",
     "@id": PERSON_ID,
-    name: siteConfig.editor,
-    jobTitle: siteConfig.role,
+    name: siteConfig.founder,
+    jobTitle: siteConfig.founderRole,
     url: absoluteUrl("/about"),
     worksFor: { "@id": ORG_ID },
     sameAs: Object.values(siteConfig.social).filter(Boolean),
@@ -83,7 +83,7 @@ export function videoObjectSchema(video: VideoAsset, pagePath: string) {
   return {
     "@type": "VideoObject",
     name: video.title ?? siteConfig.name,
-    description: video.title ?? `A wedding film edited by ${siteConfig.editor}.`,
+    description: video.title ?? `A wedding film by ${siteConfig.name}.`,
     thumbnailUrl: video.poster?.url ? [video.poster.url] : undefined,
     uploadDate: video.uploadDate ?? `${siteConfig.founded}-01-01`,
     ...(video.durationSeconds && {
@@ -104,7 +104,7 @@ export function projectSchema(project: Project) {
     url: absoluteUrl(path),
     genre: project.category,
     dateCreated: project.year ? `${project.year}` : undefined,
-    creator: { "@id": PERSON_ID },
+    creator: { "@id": ORG_ID },
     locationCreated: project.location,
     abstract: project.excerpt,
     image: project.cover?.url || undefined,
@@ -180,7 +180,7 @@ export function reviewsSchema(
           worstRating: 1,
         },
       }),
-      itemReviewed: { "@id": PERSON_ID },
+      itemReviewed: { "@id": ORG_ID },
     })),
   };
 }

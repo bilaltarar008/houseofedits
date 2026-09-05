@@ -18,7 +18,7 @@ export async function GET() {
     copyright: `© ${new Date().getFullYear()} ${siteConfig.name}`,
     updated: posts[0] ? new Date(posts[0].publishedAt) : new Date(),
     feedLinks: { rss2: absoluteUrl("/blog/rss.xml") },
-    author: { name: siteConfig.editor },
+    author: { name: siteConfig.name },
   });
 
   for (const post of posts) {

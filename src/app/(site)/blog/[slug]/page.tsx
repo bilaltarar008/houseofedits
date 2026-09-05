@@ -10,12 +10,7 @@ import { Container } from "@/components/primitives/container";
 import { CtaSection } from "@/components/sections/cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getPost, getPostSlugs, getPosts } from "@/lib/content";
-import {
-  articleSchema,
-  breadcrumbSchema,
-  graph,
-  personSchema,
-} from "@/lib/schema";
+import { articleSchema, breadcrumbSchema, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 
@@ -58,7 +53,6 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
     <>
       <JsonLd
         data={graph(
-          personSchema(),
           articleSchema(post),
           breadcrumbSchema([
             { name: "Home", path: "/" },

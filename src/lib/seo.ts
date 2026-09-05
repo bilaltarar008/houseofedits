@@ -17,7 +17,7 @@ interface SeoInput {
   noindex?: boolean;
 }
 
-const defaultTitle = `${siteConfig.editor} — ${siteConfig.role}`;
+const defaultTitle = `${siteConfig.name} — ${siteConfig.role}`;
 
 /**
  * Build a complete Next.js `Metadata` object for a page. Handles canonical
@@ -64,7 +64,7 @@ export function buildMetadata({
       ...(type === "article" && {
         publishedTime,
         modifiedTime,
-        authors: [siteConfig.editor],
+        authors: [siteConfig.name],
         tags,
       }),
     },

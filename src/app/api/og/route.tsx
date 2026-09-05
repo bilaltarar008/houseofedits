@@ -66,7 +66,7 @@ export async function GET(request: Request) {
             {title}
           </div>
           <div style={{ display: "flex", fontSize: 29, color: "#a1a1a6" }}>
-            {`${siteConfig.editor} · ${siteConfig.role}`}
+            {`${siteConfig.name} · ${siteConfig.role}`}
           </div>
         </div>
 

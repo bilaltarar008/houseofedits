@@ -16,7 +16,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
-  description: `Meet ${siteConfig.editor} — a wedding film editor and colorist. Background, editing philosophy, and the toolkit behind every delivery.`,
+  description: `Meet ${siteConfig.name} — a wedding film, videography, and photography studio. Background, philosophy, and the team behind every delivery.`,
   path: "/about",
   type: "profile",
 });
@@ -24,9 +24,9 @@ export const metadata: Metadata = buildMetadata({
 export const revalidate = 3600;
 
 const fallbackBio = [
-  "I've spent the better part of a decade in the timeline — first as a videographer, then, once I realised the edit was where the film actually came alive, entirely in post.",
-  "Today I work exclusively with wedding photographers and studios who want to shoot more and edit less. I take raw footage, selects, and a short brief, and hand back a film the couple actually re-watches: paced with intention, graded like cinema, and mixed so every vow lands.",
-  "I care about restraint. The best wedding films aren't the ones with the most cuts or the loudest music — they're the ones that trust a moment to breathe.",
+  `Founded by ${siteConfig.founder}, ${siteConfig.name} started in the edit bay and has grown into a full team — editors and colorists, videographers, and photographers working from the same brief.`,
+  "We shoot the day, or take your footage and selects, and hand back a film and gallery the couple actually revisits: paced with intention, graded like cinema, and mixed so every vow lands.",
+  "We care about restraint. The best wedding films aren't the ones with the most cuts or the loudest music — they're the ones that trust a moment to breathe.",
 ];
 
 const principles = [
@@ -61,7 +61,7 @@ export default async function AboutPage() {
 
       <PageHeader
         eyebrow="About"
-        title={`${siteConfig.editor} — editor & colorist`}
+        title={`${siteConfig.name} — ${siteConfig.role}`}
         lede={siteConfig.tagline}
       />
 
@@ -69,9 +69,9 @@ export default async function AboutPage() {
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <Media
-              image={{ url: "", alt: `Portrait of ${siteConfig.editor}` }}
+              image={{ url: "", alt: `The ${siteConfig.name} team` }}
               aspect="4 / 5"
-              placeholderLabel={`Portrait of ${siteConfig.editor}`}
+              placeholderLabel={`The ${siteConfig.name} team`}
             />
           </Reveal>
 
@@ -91,9 +91,27 @@ export default async function AboutPage() {
 
       <Stats stats={settings.stats} />
 
+      <section className="border-t border-border py-20 sm:py-28">
+        <Container className="flex flex-col gap-12">
+          <SectionHeading eyebrow="The team" title="One studio, three disciplines" />
+          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
+            {siteConfig.team.map((item, i) => (
+              <Reveal
+                key={item.title}
+                delay={i * 0.06}
+                className="flex flex-col gap-3 bg-surface p-8"
+              >
+                <h3 className="font-display text-lg">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-muted">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section className="py-20 sm:py-28">
         <Container className="flex flex-col gap-12">
-          <SectionHeading eyebrow="How I work" title="Three things I won't compromise on" />
+          <SectionHeading eyebrow="How we work" title="Three things we won't compromise on" />
           <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
             {principles.map((item, i) => (
               <Reveal

@@ -4,6 +4,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/primitives/container";
 import { PageHeader } from "@/components/primitives/page-header";
 import { JsonLd } from "@/components/seo/json-ld";
+import { InstagramIcon } from "@/components/social/instagram-icon";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
 import {
   activeSocialLinks,
@@ -18,7 +19,7 @@ import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
-  description: `Start a project with ${siteConfig.editor}. Tell me about the wedding, your style, and your deadline — I reply within one business day.`,
+  description: `Start a project with ${siteConfig.name}. Tell us about the wedding, your style, and your deadline — we reply within one business day.`,
   path: "/contact",
 });
 
@@ -75,7 +76,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Let's talk about your film"
-        lede="The more detail you share now, the faster I can come back with real availability and a quote."
+        lede="The more detail you share now, the faster we can come back with real availability and a quote."
       />
 
       <section className="py-16 sm:py-24">
@@ -92,7 +93,7 @@ export default function ContactPage() {
                   </span>
                 </div>
                 <p className="text-sm leading-relaxed text-muted">
-                  Message me on WhatsApp for a quick reply — share your date and
+                  Message us on WhatsApp for a quick reply — share your date and
                   a couple of reference films.
                 </p>
                 <a
@@ -133,7 +134,7 @@ export default function ContactPage() {
             ) : (
               <p className="text-sm text-muted">
                 Direct contact details are being finalised — use the form and your
-                message will reach me.
+                message will reach the team.
               </p>
             )}
 
@@ -147,8 +148,9 @@ export default function ContactPage() {
                         href={s.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-muted hover:text-foreground"
+                        className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
                       >
+                        {s.key === "instagram" && <InstagramIcon className="size-4" />}
                         {s.label}
                       </a>
                     </li>

@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 
 export function CtaSection({
-  title = "Have footage waiting for an editor?",
-  body = "Tell me about the wedding, your style, and your deadline. I'll reply within one business day with availability and a quote.",
+  title = "Ready to start your wedding project?",
+  body = "Tell us about the wedding, your style, and your deadline. We'll reply within one business day with availability and a quote.",
 }: {
   title?: string;
   body?: string;

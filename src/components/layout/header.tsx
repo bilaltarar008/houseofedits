@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { InstagramColorIcon } from "@/components/social/instagram-icon";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
@@ -15,6 +16,7 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const waHref = whatsappLink();
+  const igHref = siteConfig.social.instagram;
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -60,6 +62,17 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          {igHref && (
+            <a
+              href={igHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Instagram"
+              className="flex size-9 items-center justify-center transition-transform hover:scale-110"
+            >
+              <InstagramColorIcon className="size-6" />
+            </a>
+          )}
           {waHref && (
             <a
               href={waHref}

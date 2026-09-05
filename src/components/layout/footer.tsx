@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/primitives/container";
 import { Logo } from "@/components/layout/logo";
+import { InstagramIcon } from "@/components/social/instagram-icon";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
 import {
   activeSocialLinks,
@@ -22,9 +23,9 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-muted">
-              {siteConfig.editor} — {siteConfig.role.toLowerCase()}. Cinematic
-              wedding films, feature edits, and social teasers for studios
-              worldwide.
+              {siteConfig.name} — {siteConfig.role.toLowerCase()}. A team of
+              editors, videographers, and photographers crafting cinematic
+              wedding films and galleries worldwide.
             </p>
             {siteConfig.contact.email && (
               <a
@@ -69,8 +70,9 @@ export function Footer() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+                  className="group inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground"
                 >
+                  {s.key === "instagram" && <InstagramIcon className="size-4" />}
                   {s.label}
                   <ArrowUpRight className="size-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
                 </a>
@@ -87,9 +89,7 @@ export function Footer() {
           <span>
             © {year} {siteConfig.name}. All rights reserved.
           </span>
-          <span>
-            {siteConfig.editor} · Built with Next.js
-          </span>
+          <span>{siteConfig.name} · Built with Next.js</span>
         </div>
       </Container>
     </footer>

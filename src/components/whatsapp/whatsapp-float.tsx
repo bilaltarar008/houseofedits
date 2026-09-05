@@ -50,7 +50,7 @@ export function WhatsAppFloat() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Chat on WhatsApp — ${siteConfig.editor}`}
+            aria-label={`Chat on WhatsApp — ${siteConfig.name}`}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             onFocus={() => setHovered(true)}

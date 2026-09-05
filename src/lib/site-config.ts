@@ -10,13 +10,30 @@
 export const siteConfig = {
   /** Studio / brand name */
   name: "House of Edits",
-  /** The editor this portfolio belongs to */
-  editor: "Shoaib Ur Rehman",
-  role: "Wedding Film Editor & Colorist",
+  /** Founder & creative director — the studio is a team, not a solo act */
+  founder: "Shoaib Ur Rehman",
+  founderRole: "Founder & Creative Director",
+  /** Company positioning, used in titles, hero, footer, OG image */
+  role: "Wedding Film, Videography & Photography Studio",
   /** Short tagline used in hero + meta */
-  tagline: "Wedding films, cut with feeling.",
+  tagline: "Wedding stories, shot and cut with feeling.",
   description:
-    "House of Edits is the portfolio of Shoaib Ur Rehman — a wedding film editor and colorist crafting cinematic highlight films, feature films, and social teasers for photographers and studios worldwide.",
+    "House of Edits is a wedding film, videography, and photography studio — a team of editors, colorists, videographers, and photographers crafting cinematic highlight films, feature edits, and photo galleries for couples and studios worldwide.",
+  /** The disciplines the team covers, shown on the About page */
+  team: [
+    {
+      title: "Film Editors & Colorists",
+      body: "Cutting and grading footage into a film paced with intention and mixed so every vow lands.",
+    },
+    {
+      title: "Videographers",
+      body: "Multi-camera coverage of the day itself — ceremony, speeches, and the moments in between.",
+    },
+    {
+      title: "Photographers",
+      body: "Stills that hold up next to the film — candid, directed, and colour-matched to the same look.",
+    },
+  ],
 
   /** Canonical production URL — override with NEXT_PUBLIC_SITE_URL on Vercel */
   url:
@@ -40,9 +57,9 @@ export const siteConfig = {
     availability: "Currently booking projects for the upcoming season.",
   },
 
-  /** Social links — TODO: client to provide. Empty entries are not rendered. */
+  /** Social links — TODO: client to provide the rest. Empty entries are not rendered. */
   social: {
-    instagram: "",
+    instagram: "https://www.instagram.com/thehouseofeditss/",
     youtube: "",
     vimeo: "",
     tiktok: "",

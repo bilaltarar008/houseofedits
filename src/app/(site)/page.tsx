@@ -20,7 +20,6 @@ import {
 import {
   graph,
   organizationSchema,
-  personSchema,
   videoObjectSchema,
   websiteSchema,
 } from "@/lib/schema";
@@ -28,7 +27,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   description:
-    "Portfolio of Shoaib Ur Rehman — a wedding film editor and colorist crafting cinematic highlight films, feature edits, and social teasers for photographers and studios worldwide.",
+    "House of Edits is a wedding film, videography, and photography studio — a team of editors, colorists, videographers, and photographers crafting cinematic highlight films, feature edits, and social teasers worldwide.",
 });
 
 export default async function HomePage() {
@@ -44,7 +43,6 @@ export default async function HomePage() {
       <JsonLd
         data={graph(
           organizationSchema(),
-          personSchema(),
           websiteSchema(),
           settings.showreel
             ? videoObjectSchema(settings.showreel, "/")

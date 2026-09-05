@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
+import { InstagramIcon } from "@/components/social/instagram-icon";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
@@ -15,6 +16,7 @@ export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
   const close = React.useCallback(() => setOpen(false), []);
+  const igHref = siteConfig.social.instagram;
 
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -96,6 +98,18 @@ export function MobileNav() {
                 >
                   <WhatsAppIcon className="size-5" />
                   Chat on WhatsApp
+                </a>
+              )}
+              {igHref && (
+                <a
+                  href={igHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  className="flex h-13 w-full items-center justify-center gap-2.5 rounded-sm border border-border text-sm font-medium text-foreground transition-colors hover:border-accent/60 hover:text-accent"
+                >
+                  <InstagramIcon className="size-5" />
+                  Follow on Instagram
                 </a>
               )}
             </div>

@@ -25,7 +25,7 @@ export async function submitContact(
 
   // Honeypot tripped — pretend success, drop the message.
   if (parsed.data.company) {
-    return { ok: true, message: "Thanks — I'll be in touch shortly." };
+    return { ok: true, message: "Thanks — we'll be in touch shortly." };
   }
 
   const { name, email, studio, projectType, date, message } = parsed.data;
@@ -53,13 +53,13 @@ export async function submitContact(
           .filter(Boolean)
           .join("\n"),
       });
-      return { ok: true, message: "Thanks — I'll reply within one business day." };
+      return { ok: true, message: "Thanks — we'll reply within one business day." };
     } catch (error) {
       console.error("[contact] send failed:", error);
       return {
         ok: false,
         message:
-          "Something went wrong sending your message. Please email me directly instead.",
+          "Something went wrong sending your message. Please email us directly instead.",
       };
     }
   }
@@ -75,6 +75,6 @@ export async function submitContact(
   });
   return {
     ok: true,
-    message: "Thanks — your message was received. I'll be in touch shortly.",
+    message: "Thanks — your message was received. We'll be in touch shortly.",
   };
 }

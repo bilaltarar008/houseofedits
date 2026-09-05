@@ -15,7 +15,6 @@ import { getProject, getProjects, getProjectSlugs } from "@/lib/content";
 import {
   breadcrumbSchema,
   graph,
-  personSchema,
   projectSchema,
 } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -65,7 +64,6 @@ export default async function ProjectPage({
     <>
       <JsonLd
         data={graph(
-          personSchema(),
           projectSchema(project),
           breadcrumbSchema([
             { name: "Home", path: "/" },

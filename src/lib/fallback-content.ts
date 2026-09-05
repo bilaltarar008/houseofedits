@@ -19,9 +19,9 @@ import type {
 const img = (alt: string) => ({ url: "", alt });
 
 export const fallbackSiteSettings: SiteSettings = {
-  headline: "Wedding films, cut with feeling.",
+  headline: "Wedding stories, shot and cut with feeling.",
   intro:
-    "I'm Shoaib Ur Rehman — a wedding film editor and colorist. I take your footage and shape it into a film couples actually re-watch: paced with intention, graded like cinema, scored to the moment.",
+    "House of Edits is a team of editors, videographers, and photographers. We shoot your day and shape it into a film and gallery couples actually revisit: paced with intention, graded like cinema, scored to the moment.",
   showreel: {
     src: "",
     aspect: "2.39 / 1",
@@ -265,7 +265,7 @@ export const fallbackServices: ServicePackage[] = [
     title: "Color Grade Only",
     slug: "color-grade",
     summary:
-      "You cut it, I grade it — a filmic, consistent grade across your whole timeline in DaVinci Resolve.",
+      "You cut it, we grade it — a filmic, consistent grade across your whole timeline in DaVinci Resolve.",
     turnaround: "5–7 days",
     deliverables: [
       "Primary + secondary grade",
@@ -283,7 +283,7 @@ export const fallbackFaqs: FaqItem[] = [
     _id: "f-1",
     question: "How do I send you footage?",
     answer:
-      "Upload to Google Drive, Dropbox, or Frame.io and share the link. For large feature edits I can provide a dedicated upload space. Proxies are welcome — I can conform to your originals later.",
+      "Upload to Google Drive, Dropbox, or Frame.io and share the link. For large feature edits we can provide a dedicated upload space. Proxies are welcome — we can conform to your originals later.",
     order: 1,
   },
   {
@@ -304,14 +304,14 @@ export const fallbackFaqs: FaqItem[] = [
     _id: "f-4",
     question: "Do you handle music licensing?",
     answer:
-      "I edit to properly licensed tracks (Musicbed, Artlist, Epidemic) and will guide you on the right license tier. Licensing is billed to your studio account or added to the invoice.",
+      "We edit to properly licensed tracks (Musicbed, Artlist, Epidemic) and will guide you on the right license tier. Licensing is billed to your studio account or added to the invoice.",
     order: 4,
   },
   {
     _id: "f-5",
     question: "Can you match our studio's existing style?",
     answer:
-      "Yes. Send two or three reference films you've delivered before and I'll build the edit and grade to sit alongside them.",
+      "Yes. Send two or three reference films you've delivered before and we'll build the edit and grade to sit alongside them.",
     order: 5,
   },
 ];

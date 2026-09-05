@@ -5,12 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import {
-  graph,
-  organizationSchema,
-  personSchema,
-  websiteSchema,
-} from "@/lib/schema";
+import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 import "./globals.css";
@@ -37,21 +32,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...buildMetadata(),
   title: {
-    default: `${siteConfig.editor} — ${siteConfig.role}`,
+    default: `${siteConfig.name} — ${siteConfig.role}`,
     template: `%s — ${siteConfig.name}`,
   },
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.editor }],
-  creator: siteConfig.editor,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
   keywords: [
+    "wedding film studio",
+    "wedding videography",
+    "wedding photography",
     "wedding film editor",
-    "wedding video editor",
-    "wedding highlight film editor",
-    "wedding videographer editor",
+    "wedding highlight film",
     "color grading wedding films",
     "DaVinci Resolve wedding",
     "outsource wedding editing",
-    siteConfig.editor,
+    siteConfig.founder,
   ],
   formatDetection: { telephone: false, address: false, email: false },
 };
@@ -75,13 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <JsonLd
-          data={graph(
-            organizationSchema(),
-            personSchema(),
-            websiteSchema(),
-          )}
-        />
+        <JsonLd data={graph(organizationSchema(), websiteSchema())} />
         {children}
         <Analytics />
         <SpeedInsights />

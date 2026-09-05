@@ -11,9 +11,9 @@ export function ServicesPreview({ services }: { services: ServicePackage[] }) {
     <section className="border-t border-border py-20 sm:py-28">
       <Container className="flex flex-col gap-12">
         <SectionHeading
-          eyebrow="What I do"
+          eyebrow="What we do"
           title="Post-production, handled end to end"
-          description="Pick a package or bring your own workflow — I slot into your studio's process."
+          description="Pick a package or bring your own workflow — our team slots into your studio's process."
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

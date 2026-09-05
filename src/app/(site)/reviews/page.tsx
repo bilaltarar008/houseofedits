@@ -15,7 +15,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = buildMetadata({
   title: "Reviews",
-  description: `What couples, photographers, and studios say about working with ${siteConfig.editor} — reviews of the wedding films and colour grades delivered by ${siteConfig.name}.`,
+  description: `What couples and studios say about working with ${siteConfig.name} — reviews of the wedding films, videography, and photography delivered by the team.`,
   path: "/reviews",
 });
 
