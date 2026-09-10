@@ -21,6 +21,7 @@ export function VideoHero() {
           loop
           playsInline
           preload="auto"
+          poster="/images/checkvideo-poster.jpg"
         />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/10 px-6 text-center">

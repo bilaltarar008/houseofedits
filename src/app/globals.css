@@ -112,6 +112,18 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /*
+     * Reserve the scrollbar gutter permanently. Windows/Linux browsers use a
+     * reserved-space scrollbar (~17px) while macOS/mobile overlay it with
+     * zero width — without this, the very first render (before web fonts
+     * swap in and content settles) can toggle the scrollbar on/off, shifting
+     * the viewport's content width mid-load. A full-bleed `object-cover`
+     * video re-crops to that new width, which briefly exposes a strip of
+     * empty space on the trailing edge until it repaints. Reserving the
+     * gutter up front keeps the width constant from the first paint, so
+     * there's nothing to shift.
+     */
+    scrollbar-gutter: stable;
   }
 
   body {

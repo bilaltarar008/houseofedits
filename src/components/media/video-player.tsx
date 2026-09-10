@@ -52,6 +52,13 @@ export function VideoPlayer({
   // Priority videos (e.g. the hero showreel) are already known to be above
   // the fold, so skip waiting on an IntersectionObserver round-trip.
   const [nearViewport, setNearViewport] = React.useState(priority);
+  // Sticky flag — true once real frames have started rendering. Distinct
+  // from `status`, which flips to "ready" the instant `src` is assigned,
+  // well before the browser has actually decoded a paintable frame. Hiding
+  // the poster on "ready" exposes that gap as a black/partial-frame flash;
+  // this keeps the poster up until playback has genuinely begun, and (unlike
+  // gating on status) never re-shows it on a later pause.
+  const [hasStartedPlaying, setHasStartedPlaying] = React.useState(false);
 
   const hlsUrl = resolveMediaUrl(video.src);
   const mp4Url = resolveMediaUrl(video.mp4);
@@ -166,7 +173,7 @@ export function VideoPlayer({
     }
   };
 
-  const showPoster = status === "idle" || status === "loading";
+  const showPoster = !hasStartedPlaying;
 
   return (
     <div
@@ -191,7 +198,10 @@ export function VideoPlayer({
           controls={controls && !autoPlayInView && status !== "idle"}
           preload={priority ? "auto" : "none"}
           poster={video.poster?.url || undefined}
-          onPlay={() => setStatus("playing")}
+          onPlay={() => {
+            setStatus("playing");
+            setHasStartedPlaying(true);
+          }}
           onPause={() => setStatus((s) => (s === "playing" ? "paused" : s))}
         />
       )}
@@ -200,11 +210,11 @@ export function VideoPlayer({
         <div className="absolute inset-0">
           <Media
             image={video.poster}
-            aspect={video.aspect ?? "16 / 9"}
+            fill
             priority={priority}
             sizes={sizes}
             placeholderLabel={video.title ?? "Film"}
-            className="h-full rounded-none"
+            className="rounded-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
         </div>
