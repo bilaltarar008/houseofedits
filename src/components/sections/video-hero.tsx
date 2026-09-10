@@ -9,6 +9,9 @@ import { Section } from "@/components/primitives/section";
 export function VideoHero() {
   return (
     <Section bleed className="bg-background py-8 sm:py-10">
+      {/* Preload in parallel with the hero video so this plays smoothly the
+          moment it scrolls into view, instead of stalling to buffer. */}
+      <link rel="preload" as="video" href="/videos/checkvideo.mp4" type="video/mp4" />
       <div className="hero-video-clip relative aspect-[3/1] min-h-[220px] w-full overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
@@ -17,6 +20,7 @@ export function VideoHero() {
           muted
           loop
           playsInline
+          preload="auto"
         />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/10 px-6 text-center">

@@ -1,14 +1,23 @@
-import { ArrowDown } from "lucide-react";
-
 import { Container } from "@/components/primitives/container";
 import { VideoPlayer } from "@/components/media/video-player";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
+import { resolveMediaUrl } from "@/lib/utils";
 import type { SiteSettings } from "@/types/content";
 
 export function Hero({ settings }: { settings: SiteSettings }) {
+  const showreelUrl = settings.showreel
+    ? resolveMediaUrl(settings.showreel.src) || resolveMediaUrl(settings.showreel.mp4)
+    : "";
+
   return (
     <section className="grain relative -mt-20 overflow-hidden">
+      {showreelUrl && (
+        // Kicks off the network fetch as soon as the browser parses <head>,
+        // in parallel with the JS bundle, so the hero video is already
+        // buffering well before React hydrates and VideoPlayer mounts.
+        <link rel="preload" as="video" href={showreelUrl} type="video/mp4" />
+      )}
       {settings.showreel ? (
         <div className="relative h-[92svh] min-h-[560px] w-full sm:h-screen">
           <VideoPlayer

@@ -49,7 +49,9 @@ export function VideoPlayer({
   const hlsRef = React.useRef<{ destroy: () => void } | null>(null);
 
   const [status, setStatus] = React.useState<Status>("idle");
-  const [nearViewport, setNearViewport] = React.useState(false);
+  // Priority videos (e.g. the hero showreel) are already known to be above
+  // the fold, so skip waiting on an IntersectionObserver round-trip.
+  const [nearViewport, setNearViewport] = React.useState(priority);
 
   const hlsUrl = resolveMediaUrl(video.src);
   const mp4Url = resolveMediaUrl(video.mp4);
@@ -59,6 +61,7 @@ export function VideoPlayer({
 
   /* Observe viewport proximity ------------------------------------------- */
   React.useEffect(() => {
+    if (priority) return;
     const el = containerRef.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       setNearViewport(true);
@@ -75,7 +78,7 @@ export function VideoPlayer({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
   /* Attach a source ----------------------------------------------------- */
   const attach = React.useCallback(async () => {
@@ -186,7 +189,7 @@ export function VideoPlayer({
           loop={loop || autoPlayInView}
           muted={autoPlayInView}
           controls={controls && !autoPlayInView && status !== "idle"}
-          preload="none"
+          preload={priority ? "auto" : "none"}
           poster={video.poster?.url || undefined}
           onPlay={() => setStatus("playing")}
           onPause={() => setStatus((s) => (s === "playing" ? "paused" : s))}
