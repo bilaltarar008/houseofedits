@@ -107,11 +107,11 @@ function ReviewsCta({ hasReviews }: { hasReviews: boolean }) {
     <section className="relative overflow-hidden border-t border-border py-24 sm:py-32">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_360px_at_50%_120%,rgba(231,183,176,0.12),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_360px_at_50%_120%,rgba(193,231,251,0.5),transparent_70%)]"
       />
       <Container className="relative flex flex-col items-center gap-6 text-center">
         <Reveal className="flex flex-col items-center gap-6">
-          <span className="eyebrow text-[#e7b7b0]">Your turn</span>
+          <span className="eyebrow">Your turn</span>
           <h2 className="max-w-2xl text-3xl leading-tight sm:text-4xl">
             {hasReviews
               ? "Worked with House of Edits?"

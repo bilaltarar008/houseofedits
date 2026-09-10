@@ -67,7 +67,7 @@ export function Media({
 
 function Placeholder({ label }: { label?: string }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(120%_120%_at_20%_0%,#1c1c20,#0d0d0f_70%)]">
+    <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(120%_120%_at_20%_0%,#e6f4fb,#d3ecfa_70%)]">
       {/* frame corner marks — hidden in small containers (e.g. avatars) */}
       <span className="pointer-events-none absolute left-4 top-4 size-4 border-l border-t border-accent/40 @max-[220px]:hidden" />
       <span className="pointer-events-none absolute right-4 top-4 size-4 border-r border-t border-accent/40 @max-[220px]:hidden" />

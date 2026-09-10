@@ -1,7 +1,7 @@
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section";
 import { Button } from "@/components/ui/button";
-import { WorkCard } from "@/components/work/work-card";
+import { WorkGrid } from "@/components/work/work-grid";
 import type { Project } from "@/types/content";
 
 export function FeaturedWork({ projects }: { projects: Project[] }) {
@@ -21,11 +21,7 @@ export function FeaturedWork({ projects }: { projects: Project[] }) {
           </Button>
         </div>
 
-        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 6).map((project, i) => (
-            <WorkCard key={project._id} project={project} priority={i < 3} />
-          ))}
-        </div>
+        <WorkGrid projects={projects.slice(0, 6)} priorityCount={3} />
       </Container>
     </section>
   );

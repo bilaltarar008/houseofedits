@@ -3,11 +3,11 @@ import { Reveal } from "@/components/primitives/reveal";
 /** Elegant "Reviews coming soon" state — dimmed skeleton cards behind a note. */
 export function ReviewsEmpty() {
   return (
-    <div className="relative isolate flex min-h-[26rem] items-center justify-center overflow-hidden rounded-lg border border-[#e7b7b0]/20 px-6 py-16 sm:py-20">
-      {/* soft romantic glow */}
+    <div className="relative isolate flex min-h-[26rem] items-center justify-center overflow-hidden rounded-lg border border-accent/20 px-6 py-16 sm:py-20">
+      {/* soft glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_25%,rgba(231,183,176,0.10),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_25%,rgba(193,231,251,0.45),transparent_70%)]"
       />
 
       {/* ghost cards */}
@@ -40,7 +40,7 @@ export function ReviewsEmpty() {
 
       <Reveal className="relative mx-auto flex max-w-md flex-col items-center gap-5 text-center">
         <Flourish />
-        <span className="eyebrow text-[#e7b7b0]">Coming soon</span>
+        <span className="eyebrow">Coming soon</span>
         <h2 className="text-3xl leading-tight sm:text-4xl">Reviews coming soon</h2>
         <p className="text-[0.98rem] leading-relaxed text-muted">
           The first films are being delivered now. Kind words from the couples
@@ -59,7 +59,7 @@ function Flourish() {
       viewBox="0 0 72 20"
       fill="none"
       aria-hidden
-      className="text-[#e7b7b0]/70"
+      className="text-accent/70"
     >
       <path
         d="M2 10h22M48 10h22"

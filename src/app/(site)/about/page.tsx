@@ -61,8 +61,8 @@ export default async function AboutPage() {
 
       <PageHeader
         eyebrow="About"
-        title={`${siteConfig.name} — ${siteConfig.role}`}
-        lede={siteConfig.tagline}
+        title={siteConfig.name}
+        lede={`${siteConfig.role}. ${siteConfig.tagline}`}
       />
 
       <section className="py-16 sm:py-24">

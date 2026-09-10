@@ -8,13 +8,37 @@ import type { SiteSettings } from "@/types/content";
 
 export function Hero({ settings }: { settings: SiteSettings }) {
   return (
-    <section className="grain relative overflow-hidden pb-16 pt-14 sm:pt-20">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(1000px_500px_at_20%_-10%,rgba(200,164,107,0.12),transparent_60%)]"
-      />
-      <Container className="relative">
-        <div className="flex flex-col gap-3">
+    <section className="grain relative -mt-20 overflow-hidden">
+      {settings.showreel ? (
+        <div className="relative h-[92svh] min-h-[560px] w-full sm:h-screen">
+          <VideoPlayer
+            video={settings.showreel}
+            priority
+            sizes="100vw"
+            autoPlayInView
+            loop
+            fill
+            className="h-full w-full rounded-none border-0"
+          />
+          {/* <div className="absolute inset-x-0 bottom-0">
+            <Container className="pb-6">
+              <div className="inline-flex animate-fade-up items-center gap-3 rounded-full border border-border bg-background/80 px-4 py-2 text-xs text-foreground backdrop-blur-sm">
+                <ArrowDown className="size-4 animate-bounce" />
+                <span className="font-mono uppercase tracking-[0.18em]">
+                  Scroll for featured films
+                </span>
+              </div>
+            </Container>
+          </div> */}
+        </div>
+      ) : null}
+
+      <Container className="relative pb-16 pt-10 sm:pt-14">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(1000px_500px_at_20%_-10%,rgba(193,231,251,0.55),transparent_60%)]"
+        />
+        <div className="relative flex flex-col gap-3">
           <span className="eyebrow animate-fade-up">
             {siteConfig.name} — {siteConfig.role}
           </span>
@@ -35,26 +59,6 @@ export function Hero({ settings }: { settings: SiteSettings }) {
               Start a project
             </Button>
           </div>
-        </div>
-
-        <div className="mt-14">
-          {settings.showreel ? (
-            <VideoPlayer
-              video={settings.showreel}
-              priority
-              sizes="(min-width: 1280px) 1200px, 100vw"
-              autoPlayInView
-              loop
-              className="w-full border border-border"
-            />
-          ) : null}
-        </div>
-
-        <div className="mt-8 flex items-center gap-3 text-xs text-muted-foreground">
-          <ArrowDown className="size-4 animate-bounce" />
-          <span className="font-mono uppercase tracking-[0.18em]">
-            Scroll for featured films
-          </span>
         </div>
       </Container>
     </section>

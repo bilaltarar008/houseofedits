@@ -6,32 +6,35 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Surfaces */
-  --background: #09090b;
-  --surface: #111113;
-  --surface-2: #17171a;
-  --border: rgba(245, 243, 239, 0.08);
-  --border-strong: rgba(245, 243, 239, 0.16);
+  --background: #ffffff;
+  --surface: #f3fafd;
+  --surface-2: #e6f4fb;
+  --border: rgba(13, 42, 61, 0.1);
+  --border-strong: rgba(13, 42, 61, 0.18);
 
   /* Text */
-  --foreground: #f5f3ef;
-  --muted: #a1a1a6;
-  --muted-foreground: #8a8a90;
+  --foreground: #0f2a3d;
+  --muted: #51707f;
+  --muted-foreground: #7592a1;
 
-  /* Brand accent — champagne gold */
-  --accent: #c8a46b;
-  --accent-strong: #d9bd8c;
-  --accent-contrast: #0a0a0a;
+  /* Brand accent — sky blue */
+  --accent: #0e76a8;
+  --accent-strong: #0a5d87;
+  --accent-contrast: #ffffff;
+  /* The literal brand blue — soft fills, badges, glows (paired with dark text) */
+  --accent-soft: #c1e7fb;
+  --accent-soft-contrast: #0f2a3d;
 
-  /* Editorial cream — deliberate light break from the dark theme, e.g. VideoHero */
-  --cream: #f5f3ef;
+  /* Editorial cream — deliberate warm break from the blue theme */
+  --cream: #fbf8f2;
 
   /* Fonts (wired to next/font in layout.tsx) */
-  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: var(--font-playfair), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Layout */
   --container: 80rem;
@@ -50,6 +53,8 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-contrast: var(--accent-contrast);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-contrast: var(--accent-soft-contrast);
   --color-cream: var(--cream);
 
   --font-display: var(--font-display);

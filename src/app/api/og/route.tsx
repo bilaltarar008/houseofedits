@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const runtime = "nodejs";
 
-const accent = "#c8a46b";
+const accent = "#0e76a8";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -21,11 +21,11 @@ export async function GET(request: Request) {
           height: "100%",
           width: "100%",
           padding: 72,
-          background: "#09090b",
+          background: "#ffffff",
           backgroundImage:
-            "radial-gradient(1000px 520px at 12% -10%, rgba(200,164,107,0.20), transparent 60%)",
+            "radial-gradient(1000px 520px at 12% -10%, rgba(193,231,251,0.65), transparent 60%)",
           fontFamily: "Georgia, 'Times New Roman', serif",
-          color: "#f5f3ef",
+          color: "#0f2a3d",
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -65,8 +65,8 @@ export async function GET(request: Request) {
           >
             {title}
           </div>
-          <div style={{ display: "flex", fontSize: 29, color: "#a1a1a6" }}>
-            {`${siteConfig.name} · ${siteConfig.role}`}
+          <div style={{ display: "flex", fontSize: 29, color: "#51707f" }}>
+            {siteConfig.role}
           </div>
         </div>
 
@@ -75,7 +75,7 @@ export async function GET(request: Request) {
             display: "flex",
             justifyContent: "space-between",
             fontSize: 21,
-            color: "#8a8a90",
+            color: "#7592a1",
           }}
         >
           <div style={{ display: "flex" }}>

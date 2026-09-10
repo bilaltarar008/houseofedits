@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { WorkCard } from "@/components/work/work-card";
+import { WorkGrid } from "@/components/work/work-grid";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/content";
 
@@ -40,11 +40,7 @@ export function WorkIndex({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((project, i) => (
-          <WorkCard key={project._id} project={project} priority={i < 3} />
-        ))}
-      </div>
+      <WorkGrid projects={filtered} priorityCount={3} />
 
       {filtered.length === 0 && (
         <p className="py-16 text-center text-muted">No projects in this category yet.</p>

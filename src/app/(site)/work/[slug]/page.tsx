@@ -18,7 +18,7 @@ import {
   projectSchema,
 } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
-import { WorkCard } from "@/components/work/work-card";
+import { WorkGrid } from "@/components/work/work-grid";
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -179,11 +179,7 @@ export default async function ProjectPage({
         {related.length > 0 && (
           <Container className="border-t border-border py-16">
             <h2 className="mb-10 font-display text-2xl">More films</h2>
-            <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p) => (
-                <WorkCard key={p._id} project={p} />
-              ))}
-            </div>
+            <WorkGrid projects={related} />
           </Container>
         )}
       </article>

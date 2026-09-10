@@ -12,6 +12,8 @@ interface VideoPlayerProps {
   className?: string;
   /** Start playing (muted) once scrolled into view — for hero showreels. */
   autoPlayInView?: boolean;
+  /** Start playing immediately, unmuted — for a lightbox opened by a click. */
+  autoPlay?: boolean;
   loop?: boolean;
   /** Show native controls once playing. */
   controls?: boolean;
@@ -35,6 +37,7 @@ export function VideoPlayer({
   video,
   className,
   autoPlayInView = false,
+  autoPlay = false,
   loop = false,
   controls = true,
   priority = false,
@@ -111,7 +114,7 @@ export function VideoPlayer({
     // Synchronising an external system (the <video> element / hls.js) with
     // viewport state — the loading/ready status is derived from that async
     // resource, which is what an effect is for here.
-    if (nearViewport && (autoPlayInView || status !== "idle")) {
+    if (nearViewport && (autoPlayInView || autoPlay || status !== "idle")) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       void attach();
     }
@@ -135,6 +138,17 @@ export function VideoPlayer({
       () => setStatus("paused"),
     );
   }, [autoPlayInView, status]);
+
+  /* Autoplay with sound immediately — e.g. a lightbox opened by a click */
+  React.useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !autoPlay || status !== "ready") return;
+    el.muted = false;
+    el.play().then(
+      () => setStatus("playing"),
+      () => setStatus("paused"),
+    );
+  }, [autoPlay, status]);
 
   const handlePlayToggle = async () => {
     if (!hasSource) return;

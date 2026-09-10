@@ -19,8 +19,8 @@ export function ReviewCard({
       as="article"
       delay={delay}
       className={cn(
-        "group flex h-full flex-col gap-6 rounded-lg border border-[#e7b7b0]/20 bg-gradient-to-b from-surface to-surface-2 p-8",
-        "transition-colors duration-300 hover:border-[#e7b7b0]/40",
+        "group flex h-full flex-col gap-6 rounded-lg border border-accent/20 bg-gradient-to-b from-surface to-surface-2 p-8",
+        "transition-colors duration-300 hover:border-accent/40",
       )}
     >
       <div className="flex items-center justify-between">
@@ -37,7 +37,7 @@ export function ReviewCard({
         </div>
         <span
           aria-hidden
-          className="font-display text-4xl leading-none text-[#e7b7b0]/30"
+          className="font-display text-4xl leading-none text-accent/30"
         >
           &rdquo;
         </span>
@@ -51,7 +51,7 @@ export function ReviewCard({
         <Media
           image={review.avatar}
           aspect="1 / 1"
-          className="size-12 shrink-0 rounded-full border border-[#e7b7b0]/25"
+          className="size-12 shrink-0 rounded-full border border-accent/25"
           placeholderLabel={review.author}
         />
         <div className="min-w-0 text-sm">
