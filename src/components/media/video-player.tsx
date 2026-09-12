@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Pause, Play } from "lucide-react";
+import { Maximize, Minimize, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 import { Media } from "@/components/media/media";
 import { cn, resolveMediaUrl } from "@/lib/utils";
@@ -15,7 +15,7 @@ interface VideoPlayerProps {
   /** Start playing immediately, unmuted — for a lightbox opened by a click. */
   autoPlay?: boolean;
   loop?: boolean;
-  /** Show native controls once playing. */
+  /** Show the custom control bar (scrubber, time, volume, fullscreen). */
   controls?: boolean;
   priority?: boolean;
   sizes?: string;
@@ -25,8 +25,20 @@ interface VideoPlayerProps {
 
 type Status = "idle" | "loading" | "ready" | "playing" | "paused";
 
+function formatTime(seconds: number) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const total = Math.floor(seconds);
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  const ss = String(s).padStart(2, "0");
+  if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${ss}`;
+  return `${m}:${ss}`;
+}
+
 /**
- * Adaptive HLS player with lazy initialisation.
+ * Adaptive HLS player with lazy initialisation and a custom, brand-styled
+ * control bar (no native browser video UI).
  *
  * - Nothing loads until the player is near the viewport (IntersectionObserver).
  * - hls.js is dynamically imported only when actually needed (Safari uses
@@ -46,6 +58,7 @@ export function VideoPlayer({
 }: VideoPlayerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const progressRef = React.useRef<HTMLDivElement>(null);
   const hlsRef = React.useRef<{ destroy: () => void } | null>(null);
 
   const [status, setStatus] = React.useState<Status>("idle");
@@ -59,6 +72,13 @@ export function VideoPlayer({
   // this keeps the poster up until playback has genuinely begun, and (unlike
   // gating on status) never re-shows it on a later pause.
   const [hasStartedPlaying, setHasStartedPlaying] = React.useState(false);
+
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [duration, setDuration] = React.useState(0);
+  const [buffered, setBuffered] = React.useState(0);
+  const [isMuted, setIsMuted] = React.useState(autoPlayInView);
+  const [volume, setVolume] = React.useState(1);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   const hlsUrl = resolveMediaUrl(video.src);
   const mp4Url = resolveMediaUrl(video.mp4);
@@ -142,7 +162,7 @@ export function VideoPlayer({
   React.useEffect(() => {
     const el = videoRef.current;
     if (!el || !autoPlayInView || status !== "ready") return;
-    el.muted = true;
+    setIsMuted(true);
     el.play().then(
       () => setStatus("playing"),
       () => setStatus("paused"),
@@ -153,12 +173,33 @@ export function VideoPlayer({
   React.useEffect(() => {
     const el = videoRef.current;
     if (!el || !autoPlay || status !== "ready") return;
-    el.muted = false;
+    setIsMuted(false);
     el.play().then(
       () => setStatus("playing"),
       () => setStatus("paused"),
     );
   }, [autoPlay, status]);
+
+  // Keep the element's muted/volume props in sync with our custom controls.
+  React.useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = isMuted;
+  }, [isMuted]);
+
+  React.useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.volume = volume;
+  }, [volume]);
+
+  React.useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement === containerRef.current);
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
 
   const handlePlayToggle = async () => {
     if (!hasSource) return;
@@ -173,7 +214,49 @@ export function VideoPlayer({
     }
   };
 
+  const toggleMute = () => setIsMuted((m) => !m);
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const next = Number(e.target.value);
+    setVolume(next);
+    if (next === 0) setIsMuted(true);
+    else if (isMuted) setIsMuted(false);
+  };
+
+  const toggleFullscreen = () => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) {
+      void document.exitFullscreen();
+    } else {
+      void el.requestFullscreen?.().catch(() => {});
+    }
+  };
+
+  const seekToClientX = (clientX: number) => {
+    const bar = progressRef.current;
+    const el = videoRef.current;
+    if (!bar || !el || !duration) return;
+    const rect = bar.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    el.currentTime = ratio * duration;
+    setCurrentTime(ratio * duration);
+  };
+
+  const handleProgressPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    seekToClientX(e.clientX);
+  };
+
+  const handleProgressPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.buttons !== 1) return;
+    seekToClientX(e.clientX);
+  };
+
   const showPoster = !hasStartedPlaying;
+  const showControlBar = controls && !autoPlayInView && hasSource;
+  const progressPct = duration ? (currentTime / duration) * 100 : 0;
+  const bufferedPct = duration ? (buffered / duration) * 100 : 0;
 
   return (
     <div
@@ -195,7 +278,6 @@ export function VideoPlayer({
           playsInline
           loop={loop || autoPlayInView}
           muted={autoPlayInView}
-          controls={controls && !autoPlayInView && status !== "idle"}
           preload={priority ? "auto" : "none"}
           poster={video.poster?.url || undefined}
           onPlay={() => {
@@ -203,6 +285,12 @@ export function VideoPlayer({
             setHasStartedPlaying(true);
           }}
           onPause={() => setStatus((s) => (s === "playing" ? "paused" : s))}
+          onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+          onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+          onProgress={(e) => {
+            const el = e.currentTarget;
+            setBuffered(el.buffered.length ? el.buffered.end(el.buffered.length - 1) : 0);
+          }}
         />
       )}
 
@@ -252,6 +340,100 @@ export function VideoPlayer({
             )}
           </span>
         </button>
+      )}
+
+      {showControlBar && (
+        <div
+          className={cn(
+            "absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-3 pb-2.5 pt-10 transition-opacity duration-300 sm:px-4 sm:pb-3",
+            status === "playing" ? "opacity-0 group-hover:opacity-100" : "opacity-100",
+          )}
+        >
+          <button
+            type="button"
+            onClick={handlePlayToggle}
+            aria-label={status === "playing" ? "Pause" : "Play"}
+            className="shrink-0 text-white transition-colors hover:text-accent-soft"
+          >
+            {status === "playing" ? (
+              <Pause className="size-[18px]" />
+            ) : (
+              <Play className="size-[18px]" />
+            )}
+          </button>
+
+          <span className="shrink-0 font-mono text-[0.7rem] tabular-nums text-white/80">
+            {formatTime(currentTime)}
+          </span>
+
+          <div
+            ref={progressRef}
+            onPointerDown={handleProgressPointerDown}
+            onPointerMove={handleProgressPointerMove}
+            role="slider"
+            aria-label="Seek"
+            aria-valuemin={0}
+            aria-valuemax={duration}
+            aria-valuenow={currentTime}
+            className="group/bar relative h-4 flex-1 cursor-pointer touch-none"
+          >
+            <div className="absolute inset-y-0 left-0 right-0 my-auto h-1 rounded-full bg-white/25" />
+            <div
+              className="absolute inset-y-0 left-0 my-auto h-1 rounded-full bg-white/40"
+              style={{ width: `${bufferedPct}%` }}
+            />
+            <div
+              className="absolute inset-y-0 left-0 my-auto h-1 rounded-full bg-accent-soft"
+              style={{ width: `${progressPct}%` }}
+            />
+            <div
+              className="absolute top-1/2 size-3 -translate-y-1/2 rounded-full bg-accent-soft opacity-0 shadow-sm transition-opacity group-hover/bar:opacity-100"
+              style={{ left: `calc(${progressPct}% - 6px)` }}
+            />
+          </div>
+
+          <span className="hidden shrink-0 font-mono text-[0.7rem] tabular-nums text-white/60 sm:inline">
+            {formatTime(duration)}
+          </span>
+
+          <div className="group/volume flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              onClick={toggleMute}
+              aria-label={isMuted || volume === 0 ? "Unmute" : "Mute"}
+              className="text-white transition-colors hover:text-accent-soft"
+            >
+              {isMuted || volume === 0 ? (
+                <VolumeX className="size-[18px]" />
+              ) : (
+                <Volume2 className="size-[18px]" />
+              )}
+            </button>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.05}
+              value={isMuted ? 0 : volume}
+              onChange={handleVolumeChange}
+              aria-label="Volume"
+              className="hidden w-0 accent-[var(--accent-soft)] transition-all duration-200 group-hover/volume:w-14 sm:block"
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+            className="shrink-0 text-white transition-colors hover:text-accent-soft"
+          >
+            {isFullscreen ? (
+              <Minimize className="size-[18px]" />
+            ) : (
+              <Maximize className="size-[18px]" />
+            )}
+          </button>
+        </div>
       )}
 
       {!hasSource && (
