@@ -30,6 +30,13 @@ export const fallbackSiteSettings: SiteSettings = {
     durationSeconds: 39,
     poster: { url: "/images/front-page-video-poster.jpg", alt: "House of Edits showreel poster" },
   },
+  framesVideo: {
+    src: "",
+    mp4: "/videos/front-page-video1.mp4",
+    aspect: "16 / 9",
+    title: "House of Edits — Frames Reel",
+    poster: { url: "/images/front-page-video-poster.jpg", alt: "House of Edits frames reel poster" },
+  },
   gallery: [
     { image: img("Bride and groom portrait at golden hour"), caption: "Ayesha & Hamza — Hunza" },
     { image: img("First dance under warm string lights"), caption: "Sana & Ali — Islamabad" },

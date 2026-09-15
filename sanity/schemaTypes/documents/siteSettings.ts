@@ -34,6 +34,14 @@ export const siteSettings = defineType({
       group: "home",
     }),
     defineField({
+      name: "framesVideo",
+      title: "Frames section video",
+      description:
+        "Video shown in the \"frames behind the films\" band, alongside the stills. Falls back to the showreel when empty.",
+      type: "videoAsset",
+      group: "home",
+    }),
+    defineField({
       name: "gallery",
       title: "Stills & motion gallery",
       description:

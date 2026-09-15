@@ -126,6 +126,8 @@ export interface SiteSettings {
   intro: string;
   /** Full showreel shown on the home page (client provides the src later) */
   showreel?: VideoAsset;
+  /** Video shown in the "frames behind the films" section, alongside the stills */
+  framesVideo?: VideoAsset;
   /** Stills + motion gallery on the home page */
   gallery: GalleryFrame[];
   /** Client / studio logos for the marquee */

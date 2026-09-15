@@ -168,6 +168,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       headline: String(raw.headline ?? fallbackSiteSettings.headline),
       intro: String(raw.intro ?? fallbackSiteSettings.intro),
       showreel: mapVideo(raw.showreel as Raw),
+      framesVideo: mapVideo(raw.framesVideo as Raw),
       gallery: Array.isArray(raw.gallery)
         ? ((raw.gallery as Raw[])
             .map((g) => {

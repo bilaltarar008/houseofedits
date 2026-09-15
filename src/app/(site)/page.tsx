@@ -54,7 +54,7 @@ export default async function HomePage() {
       <ClientMarquee clients={settings.clients} />
       <VideoHero />
       <FeaturedWork projects={projects} />
-      <Frames frames={settings.gallery} video={settings.showreel} />
+      <Frames frames={settings.gallery} video={settings.framesVideo ?? settings.showreel} />
       <ServicesPreview services={services} />
       <Process />
       <Stats stats={settings.stats} />
