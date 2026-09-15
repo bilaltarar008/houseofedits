@@ -116,17 +116,17 @@ export const fallbackProjects: Project[] = [
   },
   {
     _id: "p-3",
-    title: "Asad & Sana",
+    title: "Asad & Sydney",
     slug: "asad-and-sana",
     category: "Highlight Film",
     year: 2025,
     excerpt:
       "A festive, music-driven cut that keeps every guest reaction in the frame.",
     services: ["Edit", "Color", "Sound Design"],
-    cover: { url: "/images/projects/asad-and-sana.jpg", alt: "Asad & Sana — wedding highlight" },
+    cover: { url: "/images/projects/asad-and-sana.jpg", alt: "Asad & Sydney — wedding highlight" },
     featured: true,
     order: 3,
-    video: video("asad-and-sana", "Asad & Sana — Wedding Highlight", 171),
+    video: video("asad-and-sana", "Asad & Sydney — Wedding Highlight", 171),
   },
   {
     _id: "p-4",
