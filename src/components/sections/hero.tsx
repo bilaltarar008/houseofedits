@@ -29,6 +29,16 @@ export function Hero({ settings }: { settings: SiteSettings }) {
             fill
             className="h-full w-full rounded-none border-0"
           />
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
+            <p className="animate-fade-up text-center leading-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.55)]">
+              <span className="block font-display text-4xl italic sm:text-6xl lg:text-7xl">
+                Wedding stories, shot
+              </span>
+              <span className="mt-2 block font-display text-2xl italic tracking-wide text-white/85 sm:text-3xl lg:text-4xl">
+                and cut with feeling.
+              </span>
+            </p>
+          </div>
           {/* <div className="absolute inset-x-0 bottom-0">
             <Container className="pb-6">
               <div className="inline-flex animate-fade-up items-center gap-3 rounded-full border border-border bg-background/80 px-4 py-2 text-xs text-foreground backdrop-blur-sm">
