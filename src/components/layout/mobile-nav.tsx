@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
+import { Logo } from "@/components/layout/logo";
 import { InstagramIcon } from "@/components/social/instagram-icon";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
@@ -46,7 +47,7 @@ export function MobileNav() {
             className="fixed inset-0 z-[60] bg-background"
           >
             <div className="container-page flex h-20 items-center justify-between">
-              <span className="font-display text-[0.95rem]">{siteConfig.name}</span>
+              <Logo onClick={close} />
               <button
                 type="button"
                 onClick={close}

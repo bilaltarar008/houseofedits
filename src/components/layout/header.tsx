@@ -19,7 +19,7 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-transparent">
       <div className="container-page flex h-20 items-center justify-between gap-8">
-        <Logo />
+        <Logo priority />
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
           {siteConfig.nav.map((item) => {
