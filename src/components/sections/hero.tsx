@@ -67,7 +67,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <p className="max-w-xl text-pretty text-base leading-relaxed text-muted animate-fade-up sm:text-lg">
+          <p className="max-w-xl text-pretty text-xs leading-relaxed text-muted animate-fade-up sm:text-sm">
             {settings.intro}
           </p>
           <div className="flex shrink-0 flex-wrap gap-3 animate-fade-up">

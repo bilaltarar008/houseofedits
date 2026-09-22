@@ -129,6 +129,7 @@ function mapService(raw: Raw): ServicePackage {
     summary: String(raw.summary ?? ""),
     turnaround: (raw.turnaround as string) || undefined,
     deliverables: (raw.deliverables as string[]) ?? [],
+    perfectFor: (raw.perfectFor as string) || undefined,
     icon: (raw.icon as string) || undefined,
     featured: Boolean(raw.featured),
     order: (raw.order as number) || undefined,

@@ -30,6 +30,15 @@ export function organizationSchema() {
     ],
     ...(siteConfig.contact.email && { email: siteConfig.contact.email }),
     ...(siteConfig.contact.phone && { telephone: siteConfig.contact.phone }),
+    ...(siteConfig.contact.address && {
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.contact.address.street,
+        addressLocality: siteConfig.contact.address.city,
+        postalCode: siteConfig.contact.address.postalCode,
+        addressCountry: siteConfig.contact.address.country,
+      },
+    }),
     ...(siteConfig.contact.whatsapp && {
       contactPoint: {
         "@type": "ContactPoint",

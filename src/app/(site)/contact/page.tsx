@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { Container } from "@/components/primitives/container";
 import { PageHeader } from "@/components/primitives/page-header";
+import { SectionHeading } from "@/components/primitives/section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { InstagramIcon } from "@/components/social/instagram-icon";
 import { WhatsAppIcon } from "@/components/whatsapp/whatsapp-icon";
@@ -161,6 +162,28 @@ export default function ContactPage() {
           </aside>
         </Container>
       </section>
+
+      {siteConfig.contact.mapEmbedSrc && (
+        <section className="border-t border-border py-16 sm:py-24">
+          <Container className="flex flex-col gap-8">
+            <SectionHeading
+              eyebrow="Find us"
+              title="Where we're based"
+              description={siteConfig.contact.location}
+            />
+            <div className="aspect-[16/9] w-full overflow-hidden rounded-sm border border-border sm:aspect-[21/9]">
+              <iframe
+                src={siteConfig.contact.mapEmbedSrc}
+                className="h-full w-full border-0"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                title={`${siteConfig.name} — ${siteConfig.contact.location}`}
+              />
+            </div>
+          </Container>
+        </section>
+      )}
     </>
   );
 }

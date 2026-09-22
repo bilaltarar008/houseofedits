@@ -77,6 +77,8 @@ export interface ServicePackage {
   summary: string;
   turnaround?: string;
   deliverables: string[];
+  /** Short "best suited for" line, e.g. "Mehndi, Barat, Walima, Nikkah, and complete wedding coverage." */
+  perfectFor?: string;
   icon?: string;
   featured?: boolean;
   order?: number;

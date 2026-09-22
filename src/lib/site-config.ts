@@ -43,12 +43,22 @@ export const siteConfig = {
   locale: "en_US",
   timezone: "Asia/Karachi",
 
-  /** Contact — TODO: client to provide */
+  /** Contact — TODO: client to provide email & phone */
   contact: {
     email: "",
     phone: "",
     /** Freeform location line, e.g. "Lahore, Pakistan — working worldwide" */
-    location: "",
+    location: "Block G Model Town, Lahore, 54000, Pakistan",
+    /** Structured address for JSON-LD (Organization schema / local SEO) */
+    address: {
+      street: "Block G Model Town",
+      city: "Lahore",
+      postalCode: "54000",
+      country: "PK",
+    },
+    /** Google Maps "embed" iframe src (Maps → Share → Embed a map) */
+    mapEmbedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.5791199187906!2d74.32208281085508!3d31.4776526741262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391905007f680151%3A0xba7302a7be719e80!2sThe%20House%20of%20edits!5e1!3m2!1sen!2s!4v1790097597522!5m2!1sen!2s",
     /** WhatsApp number in international format without "+", e.g. 923001234567 */
     whatsapp: "923155634267",
     /** Default pre-filled message for WhatsApp chat links */

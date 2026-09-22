@@ -24,7 +24,7 @@ export function ServicesPreview({ services }: { services: ServicePackage[] }) {
 
         <div>
           <Button href="/services" variant="outline">
-            See packages &amp; pricing
+            See All packages
           </Button>
         </div>
       </Container>

@@ -58,6 +58,12 @@ export function ServiceCard({
         </div>
       )}
 
+      {detailed && service.perfectFor && (
+        <p className="text-sm text-muted">
+          <span className="text-foreground">Perfect for:</span> {service.perfectFor}
+        </p>
+      )}
+
       {detailed && service.deliverables.length > 0 && (
         <ul className="mt-1 flex flex-col gap-2 border-t border-border pt-5 text-sm text-muted">
           {service.deliverables.map((item) => (

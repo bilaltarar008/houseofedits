@@ -20,7 +20,7 @@ import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Services & Pricing",
+  title: "Services",
   description:
     "Wedding highlight films, feature edits, social teasers, and colour grading — packages, deliverables, turnaround times, and pricing.",
   path: "/services",
@@ -70,6 +70,20 @@ export default async function ServicesPage() {
               delay={i * 0.05}
             />
           ))}
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-20 sm:py-24">
+        <Container className="flex flex-col items-center gap-4 text-center">
+          <Reveal className="flex flex-col items-center gap-4">
+            <h2 className="max-w-2xl text-3xl leading-tight sm:text-4xl">
+              Crafted with emotion. Edited with precision.
+            </h2>
+            <p className="max-w-lg text-muted">
+              At House of Edits, we turn your footage into films that preserve
+              memories, evoke emotion, and stand the test of time.
+            </p>
+          </Reveal>
         </Container>
       </section>
 

@@ -26,7 +26,7 @@ export function VideoHero() {
 
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/10 px-6 text-center">
           <h2 className="font-display text-3xl leading-[1.05] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45),0_1px_4px_rgba(0,0,0,0.35)] sm:text-5xl lg:text-6xl">
-            SHOAIB URF GABBAR
+            Where every moment carries meaning.
           </h2>
           <p className="max-w-md text-pretty text-xs leading-relaxed text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)] sm:max-w-lg sm:text-base">
             Every frame cut with intention — where sound, story, and light move as one.

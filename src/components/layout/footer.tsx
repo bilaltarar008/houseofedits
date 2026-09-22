@@ -18,9 +18,9 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-border">
-      <Container className="py-16">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
-          <div className="flex flex-col gap-5">
+      <Container className="py-10">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.9fr_0.9fr]">
+          <div className="flex flex-col gap-4">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-muted">
               {siteConfig.name} — {siteConfig.role.toLowerCase()}. A team of
@@ -48,7 +48,7 @@ export function Footer() {
             )}
           </div>
 
-          <nav className="flex flex-col gap-3" aria-label="Footer">
+          <nav className="flex flex-col gap-2.5" aria-label="Footer">
             <span className="eyebrow mb-1">Explore</span>
             {siteConfig.nav.map((item) => (
               <Link
@@ -61,7 +61,7 @@ export function Footer() {
             ))}
           </nav>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
             <span className="eyebrow mb-1">Elsewhere</span>
             {socials.length > 0 ? (
               socials.map((s) => (
@@ -82,14 +82,33 @@ export function Footer() {
                 Social links coming soon
               </span>
             )}
+
+            {siteConfig.contact.mapEmbedSrc && (
+              <div className="mt-2 flex flex-col gap-2">
+                {siteConfig.contact.location && (
+                  <span className="text-xs text-muted-foreground">
+                    {siteConfig.contact.location}
+                  </span>
+                )}
+                <div className="h-24 w-full overflow-hidden rounded-sm border border-border">
+                  <iframe
+                    src={siteConfig.contact.mapEmbedSrc}
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    title={`${siteConfig.name} — ${siteConfig.contact.location}`}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <span>
             © {year} {siteConfig.name}. All rights reserved.
           </span>
-          <span>{siteConfig.name} · Built with Next.js</span>
+          <span>{siteConfig.role}</span>
         </div>
       </Container>
     </footer>

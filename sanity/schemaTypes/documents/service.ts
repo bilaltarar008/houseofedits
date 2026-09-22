@@ -29,6 +29,12 @@ export const service = defineType({
     }),
     defineField({ name: "turnaround", title: "Turnaround", type: "string" }),
     defineField({
+      name: "perfectFor",
+      title: "Perfect for",
+      type: "string",
+      description: 'Short "best suited for" line, e.g. "Mehndi, Barat, Walima, Nikkah, and complete wedding coverage."',
+    }),
+    defineField({
       name: "deliverables",
       title: "Deliverables",
       type: "array",

@@ -76,7 +76,7 @@ export const testimonialsQuery = groq`
 
 export const servicesQuery = groq`
   *[_type == "service"] | order(coalesce(order, 999) asc){
-    _id, title, "slug": slug.current, summary, turnaround,
+    _id, title, "slug": slug.current, summary, turnaround, perfectFor,
     "deliverables": coalesce(deliverables, []), icon, featured, order
   }
 `;
