@@ -32,10 +32,10 @@ export function Hero({ settings }: { settings: SiteSettings }) {
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
             <p className="animate-fade-up text-center leading-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.55)]">
               <span className="block font-display text-4xl italic sm:text-6xl lg:text-7xl">
-                Wedding stories, shot
+                Wedding Stories, Crafted
               </span>
               <span className="mt-2 block font-display text-2xl italic tracking-wide text-white/85 sm:text-3xl lg:text-4xl">
-                and cut with feeling.
+                Through Editing.
               </span>
             </p>
           </div>

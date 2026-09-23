@@ -14,9 +14,9 @@ export const siteConfig = {
   founder: "Shoaib Ur Rehman",
   founderRole: "Founder & Creative Director",
   /** Company positioning, used in titles, hero, footer, OG image */
-  role: "Wedding Film, Videography & Photography Studio",
+  role: "Wedding Film Editing & Post-Production Studio",
   /** Short tagline used in hero + meta */
-  tagline: "Wedding stories, shot and cut with feeling.",
+  tagline: "Wedding Stories, Crafted Through Editing.",
   description:
     "House of Edits is a wedding film, videography, and photography studio — a team of editors, colorists, videographers, and photographers crafting cinematic highlight films, feature edits, and photo galleries for couples and studios worldwide.",
   /** The disciplines the team covers, shown on the About page */

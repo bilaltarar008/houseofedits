@@ -19,9 +19,10 @@ import type {
 const img = (alt: string) => ({ url: "", alt });
 
 export const fallbackSiteSettings: SiteSettings = {
-  headline: "Wedding stories, shot and cut with feeling.",
+  headline: "Wedding Stories, Crafted Through Editing.",
   intro:
-    "House of Edits is a team of editors, videographers, and photographers. We shoot your day and shape it into a film and gallery couples actually revisit: paced with intention, graded like cinema, scored to the moment.",
+  "House of Edits is a professional wedding and event post-production studio specializing in cinematic video editing. We transform raw footage into beautifully crafted wedding films, highlights, teasers, and couple stories that capture the emotion and essence of every celebration.\n\n" +
+  "Working with clients and studios locally and internationally, our focus is on clean storytelling, creative editing, cinematic visuals, and delivering films that are made to be remembered.",
   showreel: {
     src: "",
     mp4: "/videos/front-page-video.mp4",
