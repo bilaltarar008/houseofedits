@@ -21,7 +21,7 @@ const img = (alt: string) => ({ url: "", alt });
 export const fallbackSiteSettings: SiteSettings = {
   headline: "Wedding Stories, Crafted Through Editing.",
   intro:
-  "House of Edits is a professional wedding and event post-production studio specializing in cinematic video editing. We transform raw footage into beautifully crafted wedding films, highlights, teasers, and couple stories that capture the emotion and essence of every celebration.Working with clients and studios locally and internationally, our focus is on clean storytelling, creative editing, cinematic visuals, and delivering films that are made to be remembered.",
+  "House of Edits is a professional wedding and event post-production studio specializing in cinematic video editing. We transform raw footage into beautifully crafted wedding films, highlights, teasers, and couple stories that capture the emotion and essence of every celebration.\n\nWorking with clients and studios locally and internationally, our focus is on clean storytelling, creative editing, cinematic visuals, and delivering films that are made to be remembered.",
   showreel: {
     src: "",
     mp4: "/videos/front-page-video.mp4",
