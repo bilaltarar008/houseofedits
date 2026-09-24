@@ -25,7 +25,7 @@ export function ContactForm() {
     formState: { errors },
   } = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { projectType: "Highlight Film" },
+    defaultValues: { projectType: "Full Video" },
   });
 
   const onSubmit = (data: ContactInput) => {

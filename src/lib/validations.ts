@@ -12,7 +12,6 @@ export const contactSchema = z.object({
     "Social Teaser",
     "Only Grading",
     "Wedding Video Re-edits",
-    "Wedding Video Re-edits",
     "Something else",
   ]),
   date: z.string().max(40).optional().or(z.literal("")),
