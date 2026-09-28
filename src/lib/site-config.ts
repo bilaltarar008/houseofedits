@@ -69,7 +69,7 @@ export const siteConfig = {
 
   /** Social links — TODO: client to provide the rest. Empty entries are not rendered. */
   social: {
-    instagram: "https://www.instagram.com/thehouseofeditss/",
+    instagram: "https://www.instagram.com/houseofedits.art/",
     youtube: "",
     vimeo: "",
     tiktok: "",
